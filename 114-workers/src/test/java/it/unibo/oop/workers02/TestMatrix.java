@@ -41,7 +41,7 @@ class TestMatrix {
     void testBasic() {
         double sum = 0;
         final double[][] matrix = new double[SIZE][SIZE];
-        for (double[] d : matrix) {
+        for (final double[] d : matrix) {
             for (int i = 0; i < SIZE; i++) {
                 d[i] = i;
                 sum += i;
@@ -50,7 +50,14 @@ class TestMatrix {
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
         for (final int threads : new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
-            final SumMatrix sumList = null; // new MultiThreadedSumMatrix(threads);
+            // Replace with your implementation
+            final SumMatrix sumList = // new MultiThreadedSumMatrix(threads);
+                new SumMatrix() {
+                    @Override
+                    public double sum(final double[][] matrix) {
+                        return 0;
+                    }
+                };
             time = System.nanoTime();
             assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
             time = System.nanoTime() - time;

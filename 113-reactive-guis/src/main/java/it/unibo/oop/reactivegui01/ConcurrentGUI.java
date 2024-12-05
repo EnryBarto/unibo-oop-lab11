@@ -1,8 +1,9 @@
 package it.unibo.oop.reactivegui01;
 
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import it.unibo.oop.JFrameUtil;
+
+import java.io.Serial;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JButton;
@@ -18,22 +19,19 @@ import javax.swing.SwingUtilities;
 @SuppressWarnings("PMD.AvoidPrintStackTrace")
 public final class ConcurrentGUI extends JFrame {
 
+    @Serial
     private static final long serialVersionUID = 1L;
-    private static final double WIDTH_PERC = 0.2;
-    private static final double HEIGHT_PERC = 0.1;
     private final JLabel display = new JLabel();
-    private final JButton stop = new JButton("stop");
 
     /**
      * Builds a new CGUI.
      */
     public ConcurrentGUI() {
         super();
-        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        JFrameUtil.dimensionJFrame(this);
         final JPanel panel = new JPanel();
         panel.add(display);
+        final JButton stop = new JButton("stop");
         panel.add(stop);
         this.getContentPane().add(panel);
         this.setVisible(true);
@@ -54,7 +52,7 @@ public final class ConcurrentGUI extends JFrame {
      * The counter agent is implemented as a nested class. This makes it
      * invisible outside and encapsulated.
      */
-    private class Agent implements Runnable {
+    private final class Agent implements Runnable {
         /*
          * Stop is volatile to ensure visibility. Look at:
          * 

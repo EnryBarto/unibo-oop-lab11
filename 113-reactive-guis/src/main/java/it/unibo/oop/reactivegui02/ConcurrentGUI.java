@@ -1,17 +1,14 @@
 package it.unibo.oop.reactivegui02;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import java.io.Serial;
 
 /**
  * Second example of reactive GUI.
  */
 @SuppressWarnings("PMD.AvoidPrintStackTrace")
 public final class ConcurrentGUI extends JFrame {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 }

@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.util.Arrays;
+import java.io.Serial;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,20 +22,21 @@ import javax.swing.JTextArea;
 /**
  * Modify this small program adding new filters.
  * Realize this exercise using as much as possible the Stream library.
- *
+ * <br>
  * 1) Convert to lowercase
- *
+ * <br>
  * 2) Count the number of chars
- *
+ * <br>
  * 3) Count the number of lines
- *
+ * <br>
  * 4) List all the words in alphabetical order
- * 
+ * <br>
  * 5) Write the count for each word, e.g. "word word pippo" should output "pippo -> 1 word -> 2"
  *
  */
 public final class LambdaFilter extends JFrame {
 
+    @Serial
     private static final long serialVersionUID = 1760990730218643730L;
 
     private enum Command {
@@ -99,7 +102,12 @@ public final class LambdaFilter extends JFrame {
         centralPanel.add(right);
         panel1.add(centralPanel, BorderLayout.CENTER);
         final JButton apply = new JButton("Apply");
-        apply.addActionListener(ev -> right.setText(((Command) combo.getSelectedItem()).translate(left.getText())));
+        apply.addActionListener(ev ->
+            right.setText(
+                ((Command) Objects.requireNonNull(combo.getSelectedItem()))
+                    .translate(left.getText())
+            )
+        );
         panel1.add(apply, BorderLayout.SOUTH);
         setContentPane(panel1);
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
